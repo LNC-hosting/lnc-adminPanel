@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/next";
 import { PWARegister, InstallPrompt } from "@/components/pwa-register";
 import AnalyticsTracker from "@/components/analytics-tracker";
+import ThreeBackgroundWrapper from "@/components/ui/three-background-wrapper";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://lnc-admin-panel.vercel.app";
@@ -26,9 +27,13 @@ export const metadata: Metadata = {
     "LNC Admin",
     "Project Management",
     "LNC community Admin Panel",
-    "LNC Community Admin"
+    "LNC Community Admin",
+    "LNC Community"
   ],
-  authors: [{ name: "LNC Network", url: siteUrl }],
+  authors: [
+    { name: "LNC Network", url: siteUrl },
+    { name: "Rohit Kumar Kundu", url: "mailto:kundurohit53@gmail.com" }
+  ],
   creator: "LNC Network",
   publisher: "LNC Network",
 
@@ -143,7 +148,18 @@ export default function RootLayout({
     "author": {
       "@type": "Organization",
       "name": "LNC Network",
-      "url": siteUrl
+      "url": siteUrl,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "kundurohit53@gmail.com",
+        "name": "Rohit Kumar Kundu"
+      }
+    },
+    "maintainer": {
+      "@type": "Person",
+      "name": "Rohit Kumar Kundu",
+      "email": "kundurohit53@gmail.com"
     }
   };
 
@@ -169,7 +185,8 @@ export default function RootLayout({
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark">
+          <ThreeBackgroundWrapper />
           <PWARegister />
           <InstallPrompt />
           <AnalyticsTracker />
@@ -180,3 +197,4 @@ export default function RootLayout({
     </html>
   );
 }
+
